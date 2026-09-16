@@ -1,17 +1,92 @@
 ---
-
+import "../styles/global.css";
+import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Bandflower Magazine</title>
+    <style>
+      .navbar {
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="public/images/logo.png" />
+      <div class="navbar">
+        <li>
+          <ul><a href="/">Home</a></ul>
+          <div class="dropdown">
+            <button class="dropbtn"
+              >Read
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/tags/news">News</a>
+              <a href="/tags/editorials">Editorials</a>
+              <a href="/tags/interviews">Interviews</a>
+              <a href="/tags/reviews">Reviews</a>
+              <a href="/tags/artistsinbloom">Artists In Bloom</a>
+            </div>
+            <ul><a href="/galleries">Galleries</a></ul>
+            <ul><a href="/about">About</a></ul>
+            <ul><a href="/team">Team</a></ul>
+            <ul><a href="/contact">Contact</a></ul>
+            <PagefindConfig />
+            <pagefind-searchbox></pagefind-searchbox>
+          </div>
+        </li>
+      </div>
+    </header>
+    <main>
+      <h2>LATEST POSTS</h2>
+
+      <p>ipod here</p>
+
+      <form id="poll-form" class="poll-form">
+        <label>
+          <input type="radio" name="vote" value="yes" /> Yes
+        </label>
+        <label>
+          <input type="radio" name="vote" value="no" /> No
+        </label>
+        <button type="submit" class="vote-button"> Vote </button>
+      </form>
+
+      <p>mailing list</p>
+
+      <marquee><h2>NEWSFLASH</h2></marquee>
+
+      <h2>PHOTO GALLERIES</h2>
+
+      <marquee><h2>REVIEWS</h2></marquee>
+    </main>
+    <footer>
+      <h1>Bandflower Magazine</h1>
+      <li>
+        <ul><a href="/">Home</a></ul>
+        <ul>Read</ul>
+        <ul><a href="/tags/news">News</a></ul>
+        <ul>
+          <a href="/tags/editorials">Editorials</a>
+        </ul>
+        <ul><a href="/tags/interviews">Interviews</a></ul>
+
+        <ul><a href="/tags/reviews">Reviews</a></ul>
+        <ul><a href="/tags/artistsinbloom">Artists In Bloom</a></ul>
+        <ul><a href="/galleries">Galleries</a></ul>
+        <ul><a href="/about">About</a></ul>
+        <ul><a href="/team">Team</a></ul>
+        <ul><a href="/contact">Contact</a></ul>
+        <PagefindConfig />
+        <pagefind-searchbox></pagefind-searchbox>
+      </li>
+    </footer>
+  </body>
 </html>
