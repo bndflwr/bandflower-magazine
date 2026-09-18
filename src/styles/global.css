@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme inline {
+  --font-blackout-midnight: var(--font-blackout-midnight);
+  --font-blackout-two-am: var(--font-blackout-two-am);
+  --font-azeret-mono: var(--font-azeret-mono);
+}
+
+@font-face {
+  font-family: "Aria Solid", sans-serif;
+  font-style: normal;
+  font-display: swap;
+  src: url("src/fonts/ariasolid-Regular.woff2") format("woff2");
+}
