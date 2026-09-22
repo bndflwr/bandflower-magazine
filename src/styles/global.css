@@ -12,3 +12,26 @@
   font-display: swap;
   src: url("src/fonts/ariasolid-Regular.woff2") format("woff2");
 }
+
+:root {
+  --base-color: white;
+  --text-color: #1e1e1e;
+  --accent-color: #f244b5;
+}
+
+:root.dark {
+  --base-color: #1e1e1e;
+  --text-color: white;
+  --accent-color: #f244b5;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #1e1e1e;
+  background: #f091cf;
+}
+
+::selection {
+  color: #1e1e1e;
+  background: #f091cf;
+}

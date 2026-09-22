@@ -27,7 +27,7 @@ export default defineConfig({
     },
     {
       provider: fontProviders.fontsource(),
-      name: "Blackout 2AM",
+      name: "Blackout Two AM",
       cssVariable: "--font-blackout-two-am",
     },
   ],
