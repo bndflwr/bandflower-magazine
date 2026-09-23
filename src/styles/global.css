@@ -19,9 +19,9 @@
   --accent-color: #f244b5;
 }
 
-:root.dark {
-  --base-color: #1e1e1e;
-  --text-color: white;
+html.dark {
+  background-color: #1e1e1e;
+  color: white;
   --accent-color: #f244b5;
 }
 

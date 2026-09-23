@@ -5,9 +5,11 @@ import pagefind from "astro-pagefind";
 
 import icon from "astro-icon";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [pagefind(), icon()],
+  integrations: [pagefind(), icon(), react()],
   vite: {
     plugins: [tailwindcss()],
   },

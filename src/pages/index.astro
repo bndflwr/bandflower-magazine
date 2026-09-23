@@ -52,18 +52,102 @@ import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
         text-decoration: none;
         font-size: 1.2em;
       }
+      .navbar a:active {
+        color: #4d0c36;
+      }
       .sectiontitle {
         font-family: "Blackout Midnight";
         font-size: 4rem;
       }
       .marquee {
-        font-family: "Blackout Two AM";
+        font-family: "Blackout 2AM";
         font-size: 4rem;
       }
+      /* The dropdown container */
       .dropdown {
-      }
-      footer {
+        float: left;
         overflow: hidden;
+      }
+
+      /* Dropdown button */
+      .dropdown .dropbtn {
+        font-size: 1.2em;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+      }
+
+      /* Add a red background color to navbar links on hover */
+      .navbar a:hover,
+      .dropdown:hover .dropbtn {
+        color: #fbc1e6;
+        background-color: #9b2e75;
+        box-shadow:
+          inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+          inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+          0 4px 15px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 30px 0px 30px 0px;
+      }
+
+      /* Dropdown content (hidden by default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        background: #f244b5;
+        background: linear-gradient(
+          180deg,
+          rgba(242, 68, 181, 1) 50%,
+          rgba(155, 46, 117, 1) 100%
+        );
+        box-shadow:
+          inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+          inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+          0 4px 15px 0px rgba(0, 0, 0, 0.15),
+          inset 0 2px 2px 0px #ff60a5;
+        box-shadow:
+          inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+          inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+          0 4px 15px 0px rgba(0, 0, 0, 0.15);
+        z-index: 1;
+        border-radius: 0px 30px 0px 30px;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        float: none;
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      /* Add a grey background color to dropdown links on hover */
+      .dropdown-content a:hover {
+        background-color: #9b2e75;
+        box-shadow:
+          inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+          inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+          0 4px 15px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 0px 30px 0px 30px;
+      }
+
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .toggles {
+        margin-right: auto;
+      }
+
+      footer {
+        height: 100%;
         background: #f244b5;
         background: linear-gradient(
           180deg,
@@ -76,7 +160,56 @@ import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
           0 4px 15px 0px rgba(0, 0, 0, 0.15),
           inset 0 2px 2px 0px #ff60a5;
         font-family: "Blackout Midnight";
+        display: grid;
+        /* grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr)); */
+        /* Magic happens here */
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .footerLogo {
+        width: clamp(8rem, 110%, 18rem);
+      }
+
+      footer div {
+        margin: 10px;
+        padding: 20px;
+        font-size: 30px;
+      }
+
+      .row {
+        padding: 1em 1em;
+      }
+      .row.primary {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 2fr;
+        align-items: stretch;
+      }
+      .column {
+        width: 100%;
         display: flex;
+        flex-direction: column;
+        padding: 0 2em;
+        min-height: 15em;
+      }
+      .about p {
+        text-align: justify;
+        line-height: 2;
+        margin: 0;
+      }
+      div.social {
+        display: flex;
+        justify-content: space-around;
+        font-size: 2.4em;
+        flex-direction: row;
+        margin-top: 0.5em;
+      }
+      .social i {
+        color: #bac6d9;
       }
     </style>
   </head>
@@ -86,60 +219,94 @@ import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
       <div class="navbar rounded-tl-4xl rounded-br-4xl">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="">Read</a></li>
           <div class="dropdown">
-            <li><a href="/tags/editorials">Editorials</a></li>
-            <li><a href="/tags/interviews">Interviews</a></li>
-            <li><a href="/tags/reviews">Reviews</a></li>
-            <li><a href="/tags/bloombox">Bloombox</a></li>
+            <button class="dropbtn"
+              >Read
+              <Icon
+                name="ic:twotone-keyboard-double-arrow-down"
+                style="display:inline"
+              />
+            </button>
+            <div class="dropdown-content">
+              <li><a href="/tags/editorials">Editorials</a></li>
+              <li><a href="/tags/interviews">Interviews</a></li>
+              <li><a href="/tags/reviews">Reviews</a></li>
+              <li><a href="/tags/bloombox">Bloombox</a></li>
+            </div>
           </div>
           <li><a href="/galleries">Galleries</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/team">Team</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
+        <div class="toggles">
+          <button class="social-icon" aria-label="Open search" data-search-open>
+            <Icon name="ic:outline-search" style="display:inline" />
+          </button>
+        </div>
       </div>
+    </header>
 
-      <main>
-        <h2 class="sectiontitle">LATEST POSTS</h2>
+    <main>
+      <h2 class="sectiontitle">LATEST POSTS</h2>
 
-        <p>ipod here</p>
+      <p>ipod here</p>
 
-        <form id="poll-form" class="poll-form">
-          <label>
-            <input type="radio" name="vote" value="yes" /> Yes
-          </label>
-          <label>
-            <input type="radio" name="vote" value="no" /> No
-          </label>
-          <button type="submit" class="vote-button"> Vote </button>
-        </form>
+      <form id="poll-form" class="poll-form">
+        <label>
+          <input type="radio" name="vote" value="yes" /> Yes
+        </label>
+        <label>
+          <input type="radio" name="vote" value="no" /> No
+        </label>
+        <button type="submit" class="vote-button"> Vote </button>
+      </form>
 
-        <p>mailing list</p>
+      <p>mailing list</p>
 
-        <marquee><h2 class="marquee">NEWSFLASH</h2></marquee>
+      <marquee><h2 class="marquee">NEWSFLASH</h2></marquee>
 
-        <h2 class="sectiontitle">PHOTO GALLERIES</h2>
+      <h2 class="sectiontitle">PHOTO GALLERIES</h2>
 
-        <marquee><h2 class="marquee">REVIEWS</h2></marquee>
-      </main>
-      <footer class="rounded-tl-4xl">
-        <h1>Bandflower Magazine</h1>
+      <marquee><h2 class="marquee">REVIEWS</h2></marquee>
+    </main>
+    <footer class="rounded-tl-4xl">
+      <div class="column">
+        <img class="footerLogo" src="public/images/logo-fullwhite.png" />
+        <p
+          style="font-family: monotalic; font-size: 0.7em; color: white; white-space: nowrap;"
+        >
+          Where artists come to bloom
+        </p>
+        <div class="social">
+          <Icon name="bi:facebook" />
+          <Icon name="bi:instagram" />
+          <Icon name="bi:youtube" />
+          <Icon name="bi:twitter" />
+          <Icon name="bi:tiktok" />
+        </div>
+      </div>
+      <div class="column">
+        <p>Read</p>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="">Read</a></li>
           <li><a href="/tags/editorials">Editorials</a></li>
           <li><a href="/tags/interviews">Interviews</a></li>
           <li><a href="/tags/reviews">Reviews</a></li>
           <li><a href="/tags/bloombox">Bloombox</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul>
           <li><a href="/galleries">Galleries</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/team">Team</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
+      </div>
+      <div>
         <PagefindConfig />
         <pagefind-searchbox></pagefind-searchbox>
-      </footer>
-    </header>
+      </div>
+    </footer>
   </body>
 </html>

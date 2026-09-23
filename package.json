@@ -7,16 +7,25 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npx pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^6.0.6",
+    "@iconify-json/bi": "^1.2.7",
+    "@iconify-json/ic": "^1.2.4",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "astro": "^7.3.2",
     "astro-icon": "^1.2.0",
     "astro-pagefind": "^2.0.1",
     "astro-theme-toggle": "^0.8.2",
+    "motion": "^13.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-fast-marquee": "^1.6.5",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
