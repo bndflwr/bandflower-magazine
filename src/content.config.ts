@@ -27,6 +27,7 @@ const blogCollection = defineCollection({
     categories: z.array(z.string()).default(() => ["others"]),
     tags: z.array(z.string()).default(() => ["others"]),
     draft: z.boolean().optional(),
+    featured: z.boolean().optional(),
   }),
 });
 
@@ -104,46 +105,6 @@ const homepageCollection = defineCollection({
   }),
 });
 
-// Call to Action collection schema
-const ctaSectionCollection = defineCollection({
-  loader: glob({
-    pattern: "call-to-action.{md,mdx}",
-    base: "src/content/sections",
-  }),
-  schema: z.object({
-    enable: z.boolean(),
-    title: z.string(),
-    description: z.string(),
-    image: z.string(),
-    button: z.object({
-      enable: z.boolean(),
-      label: z.string(),
-      link: z.string(),
-    }),
-  }),
-});
-
-// Testimonials Section collection schema
-const testimonialSectionCollection = defineCollection({
-  loader: glob({
-    pattern: "testimonial.{md,mdx}",
-    base: "src/content/sections",
-  }),
-  schema: z.object({
-    enable: z.boolean(),
-    title: z.string(),
-    description: z.string(),
-    testimonials: z.array(
-      z.object({
-        name: z.string(),
-        avatar: z.string(),
-        designation: z.string(),
-        content: z.string(),
-      }),
-    ),
-  }),
-});
-
 // Export collections
 export const collections = {
   // Pages
@@ -153,8 +114,4 @@ export const collections = {
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,
-
-  // sections
-  ctaSection: ctaSectionCollection,
-  testimonialSection: testimonialSectionCollection,
 };
