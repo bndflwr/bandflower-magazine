@@ -1,0 +1,71 @@
+---
+const { marqueeHeadline } = Astro.props;
+---
+
+<div class="marquee" aria-label="Scrolling reviews banner">
+  <div class="marquee__track">
+    <!-- First group: "${marqueeHeadline} " repeated, each followed by one space -->
+    <div class="marquee__group">
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+    </div>
+    <!-- Second identical group for seamless looping -->
+    <div class="marquee__group" aria-hidden="true">
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+      <span class="marquee__text">{marqueeHeadline} </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Main container for the marquee */
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 1.2rem 0;
+    position: relative;
+  }
+
+  /* The moving track — no gaps, no padding */
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: scroll-left 30s linear infinite;
+  }
+
+  /* Each group of text is a flex container — no gap, no padding */
+  .marquee__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .marquee__text {
+    font-size: 3.5rem;
+    font-family: "Blackout 2AM";
+    text-transform: uppercase;
+    white-space: pre;
+    color: var(--marquee-color);
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

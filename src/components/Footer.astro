@@ -1,0 +1,203 @@
+---
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+---
+
+<style>
+  footer {
+    height: 100%;
+    background: #f244b5;
+    background: linear-gradient(
+      180deg,
+      rgba(242, 68, 181, 1) 50%,
+      rgba(155, 46, 117, 1) 100%
+    );
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15),
+      inset 0 2px 2px 0px #ff60a5;
+    font-family: "Blackout Midnight";
+  }
+
+  .footerLogo {
+    width: clamp(8rem, 110%, 18rem);
+  }
+
+  .footer {
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 5vw, 2rem)
+      clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    min-width: 0;
+    font-size: 1.6rem;
+  }
+
+  .footer-col h3 {
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    color: #791d59;
+    background: -webkit-linear-gradient(180deg, #9b2e75, #791d59);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.25rem;
+    border-bottom: 2px solid #9b2e75;
+    padding-bottom: 0.6rem;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .footer-brand p {
+    line-height: 1.6;
+    font-family: monotalic;
+    font-size: 0.7em;
+    color: #ffb5e5;
+    white-space: nowrap;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      transform 0.1s ease;
+    display: inline-block;
+    width: fit-content;
+    overflow-wrap: break-word;
+  }
+
+  .footer-links a:hover {
+    background: -webkit-linear-gradient(180deg, #9b2e75, #791d59);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition:
+      background 0.2s ease,
+      transform 0.1s ease;
+    transform: translateX(4px);
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    margin-top: 0.5rem;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #791d59;
+    color: white;
+    width: clamp(2rem, 4vw, 2.25rem);
+    height: clamp(2rem, 4vw, 2.25rem);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .social-links a:hover {
+    background: #9b2e75;
+    color: #fbc1e6;
+    transform: scale(1.08);
+  }
+
+  .footer-bottom {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    border-top: 1px solid #791d59;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+
+    color: #4f0937;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+</style>
+
+<footer class="footer rounded-tl-4xl">
+  <div class="footer-inner">
+    <!-- Three-column area -->
+    <div class="footer-container">
+      <!-- Column 1: Brand + Social links -->
+      <div class="footer-col footer-brand">
+        <img class="footerLogo" src="public/images/logo-fullwhite.png" />
+        <p>Where artists come to bloom</p>
+
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><Icon name="bi:facebook" /></a>
+          <a href="#" aria-label="Instagram"><Icon name="bi:instagram" /></a>
+          <a href="#" aria-label="Youtube"><Icon name="bi:youtube" /></a>
+          <a href="#" aria-label="Twitter"><Icon name="bi:twitter" /></a>
+          <a href="#" aria-label="Tiktok"><Icon name="bi:tiktok" /></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Company links -->
+      <div class="footer-col">
+        <h3>Read</h3>
+        <ul class="footer-links">
+          <li><a href="/tags/editorials">Editorials</a></li>
+          <li><a href="/tags/interviews">Interviews</a></li>
+          <li><a href="/tags/concerts">Concerts</a></li>
+          <li><a href="/tags/reviews">Reviews</a></li>
+          <li><a href="/tags/bloombox">Bloombox</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources links (mirrors column 2) -->
+      <div class="footer-col">
+        <ul class="footer-links">
+          <li><a href="/galleries">Galleries</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar: full-width copyright -->
+    <div class="footer-bottom">
+      <p>Site design by iZ</p>
+    </div>
+  </div>
+</footer>

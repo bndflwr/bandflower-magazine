@@ -13,16 +13,23 @@
   src: url("src/fonts/ariasolid-Regular.woff2") format("woff2");
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --base-color: white;
   --text-color: #1e1e1e;
   --accent-color: #f244b5;
+  --marquee-color: #1e1e1e;
 }
 
 html.dark {
   background-color: #1e1e1e;
   color: white;
   --accent-color: #f244b5;
+  --marquee-color: #f244b5;
 }
 
 ::-moz-selection {

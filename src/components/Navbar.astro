@@ -1,0 +1,515 @@
+---
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+import ThemeIcon from "../components/ThemeIcon.astro";
+import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
+---
+
+<header>
+  <div class="navbar rounded-tl-4xl rounded-br-4xl">
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span class="icon-open"><Icon name="ic:outline-menu" /></span>
+      <span class="icon-close"><Icon name="ic:outline-close" /></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Home</a></li>
+      <li class="dropdown">
+        <button class="dropbtn">
+          Read
+          <Icon
+            name="ic:twotone-keyboard-double-arrow-down"
+            style="display:inline"
+          />
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="/tags/editorials">Editorials</a></li>
+          <li><a href="/tags/interviews">Interviews</a></li>
+          <li><a href="/tags/concerts">Concerts</a></li>
+          <li><a href="/tags/reviews">Reviews</a></li>
+          <li><a href="/tags/bloombox">Bloombox</a></li>
+        </ul>
+      </li>
+      <li><a href="/galleries">Galleries</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/team">Team</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+
+    <!-- Right group: search + theme -->
+    <div class="nav-actions">
+      <button
+        class="social-icon search-btn"
+        id="search-btn"
+        aria-label="Open search"
+        title="Search (/)"
+      >
+        <Icon name="ic:outline-search" style="display:inline" />
+      </button>
+
+      <span class="nav-divider" aria-hidden="true">|</span>
+
+      <ThemeIcon />
+    </div>
+  </div>
+</header>
+
+<div
+  class="search-overlay"
+  id="search-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search"
+  tabindex="-1"
+  transition:persist
+>
+  <div class="search-backdrop" id="search-backdrop"></div>
+  <div class="search-modal">
+    <div id="pagefind-search"></div>
+  </div>
+</div>
+
+<style>
+  .navbar {
+    overflow: hidden;
+    width: clamp(25rem, 85%, 80rem);
+    display: block;
+    margin: 0 auto;
+    background: #f244b5;
+    background: linear-gradient(
+      180deg,
+      rgba(242, 68, 181, 1) 50%,
+      rgba(155, 46, 117, 1) 100%
+    );
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15),
+      inset 0 2px 2px 0px #ff60a5;
+    font-family: "Blackout Midnight";
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* left group ↔ right group */
+    gap: 1rem;
+    padding: 0 1em;
+  }
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  .navbar a:active {
+    color: #4d0c36;
+  }
+
+  /* Left group — nav links in a row */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  /* Right group — search + theme toggle */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0; /* never let them collapse or wrap */
+    margin-left: auto; /* push to the far right */
+  }
+
+  /* The dropdown container */
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  /* Dropdown button */
+  .dropdown .dropbtn {
+    font-size: 1.2em;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+
+  /* Add a red background color to navbar links on hover */
+  .navbar a:hover,
+  .dropdown:hover .dropbtn {
+    color: #fbc1e6;
+    background-color: #9b2e75;
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 30px 0px 30px 0px;
+  }
+
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    background: #f244b5;
+    background: linear-gradient(
+      180deg,
+      rgba(242, 68, 181, 1) 50%,
+      rgba(155, 46, 117, 1) 100%
+    );
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15),
+      inset 0 2px 2px 0px #ff60a5;
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    border-radius: 0px 30px 0px 30px;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  /* Add a background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #9b2e75;
+    box-shadow:
+      inset 0 4px 4px 0px rgba(255, 255, 255, 0.35),
+      inset 0 -4px 4px 0px rgba(0, 0, 0, 0.3),
+      0 4px 15px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 30px 0px 30px;
+  }
+
+  .dropdown-content a:active {
+    color: #791d59;
+  }
+
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  [data-icon="ic:outline-search"] {
+    font-size: 2.2rem;
+    color: white;
+  }
+
+  /* ── Search button ── */
+  .search-btn {
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    line-height: 0;
+  }
+
+  /* ── Search overlay ── */
+  .search-overlay {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5rem 1rem 1rem;
+    visibility: hidden;
+    transition: visibility 0s linear 0.25s;
+  }
+  .search-overlay.open {
+    visibility: visible;
+    transition: visibility 0s;
+  }
+  .search-overlay:focus {
+    outline: none;
+  }
+  .search-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .search-overlay.open .search-backdrop {
+    opacity: 1;
+  }
+  .search-modal {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg, #fff);
+    border-radius: 14px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    max-height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+    transform-origin: top center;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .search-overlay.open .search-modal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .search-modal,
+    .search-overlay.open .search-modal {
+      transform: none;
+      transition: opacity 0.2s ease;
+    }
+  }
+  #pagefind-search {
+    padding: 0.75rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .nav-divider {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.9em;
+    padding: 0 0.35rem;
+  }
+  /* Hamburger button: hidden on desktop */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 0.4rem;
+    line-height: 0;
+  }
+  .nav-toggle :global(svg) {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .nav-toggle .icon-close,
+  .nav-toggle[aria-expanded="true"] .icon-open {
+    display: none;
+  }
+  .nav-toggle[aria-expanded="true"] .icon-close {
+    display: inline;
+  }
+
+  @container nav (max-width: 768px) {
+    /* the 25rem minimum would overflow small phones */
+    .headerLogo,
+    .navbar {
+      width: 92%;
+    }
+
+    .navbar {
+      flex-wrap: wrap;
+      row-gap: 0;
+    }
+    .nav-toggle {
+      display: flex;
+      order: 1;
+    }
+    .nav-actions {
+      order: 2;
+    }
+
+    .nav-links {
+      order: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      padding-bottom: 0;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease,
+        padding-bottom 0.35s ease,
+        visibility 0s linear 0.35s;
+    }
+    .nav-links.open {
+      max-height: 40rem;
+      opacity: 1;
+      visibility: visible;
+      padding-bottom: 0.75rem;
+      transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease 0.05s,
+        padding-bottom 0.35s ease,
+        visibility 0s;
+    }
+
+    .dropdown {
+      float: none;
+    }
+    .navbar .nav-links a,
+    .dropdown .dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      float: none;
+    }
+
+    /* hover doesn't exist on touch, so show the Read submenu inline */
+    .dropdown-content {
+      display: block;
+      position: static;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding-left: 1rem;
+    }
+  }
+
+  header {
+    container: nav / inline-size;
+  }
+</style>
+
+<script>
+  let pagefindReady = false;
+
+  // Pagefind's stylesheet is injected at runtime; re-add it after View Transitions swap <head>
+  function ensurePagefindCss() {
+    if (document.querySelector("link[data-pagefind-css]")) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/pagefind/pagefind-ui.css";
+    link.setAttribute("data-pagefind-css", "");
+    document.head.appendChild(link);
+  }
+
+  async function loadPagefind() {
+    if (pagefindReady) return;
+    pagefindReady = true;
+
+    // In dev, Pagefind's index/bundle doesn't exist yet
+    if (import.meta.env.DEV) {
+      const container = document.getElementById("pagefind-search");
+      if (container) {
+        container.innerHTML =
+          '<p style="padding:1.25rem;color:#888;font-size:0.88rem;text-align:center;">Search is only available in production builds.</p>';
+      }
+      return;
+    }
+
+    ensurePagefindCss();
+
+    const script = document.createElement("script");
+    script.src = "/pagefind/pagefind-ui.js";
+    script.onload = () => {
+      // @ts-ignore
+      new PagefindUI({
+        element: "#pagefind-search",
+        showImages: false,
+        showSubResults: true,
+      });
+      setTimeout(() => {
+        document.querySelector("#pagefind-search input")?.focus();
+      }, 50);
+    };
+    document.head.appendChild(script);
+  }
+
+  function openSearch() {
+    const overlay = document.getElementById("search-overlay");
+    if (!overlay || overlay.classList.contains("open")) return;
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    loadPagefind().then(() => {
+      if (pagefindReady) {
+        setTimeout(() => {
+          document.querySelector("#pagefind-search input")?.focus();
+        }, 50);
+      }
+    });
+  }
+
+  function closeSearch() {
+    const overlay = document.getElementById("search-overlay");
+    if (!overlay?.classList.contains("open")) return;
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  document.getElementById("search-btn")?.addEventListener("click", openSearch);
+  document
+    .getElementById("search-backdrop")
+    ?.addEventListener("click", closeSearch);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSearch();
+    if (
+      e.key === "/" &&
+      document.activeElement?.tagName !== "INPUT" &&
+      document.activeElement?.tagName !== "TEXTAREA"
+    ) {
+      e.preventDefault();
+      openSearch();
+    }
+  });
+
+  document.addEventListener("astro:before-swap", () => closeSearch());
+  document.addEventListener("astro:after-swap", () => {
+    if (pagefindReady && !import.meta.env.DEV) ensurePagefindCss();
+  });
+
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  function setNav(open: boolean) {
+    navLinks?.classList.toggle("open", open);
+    navToggle?.setAttribute("aria-expanded", String(open));
+  }
+
+  navToggle?.addEventListener("click", () =>
+    setNav(!navLinks?.classList.contains("open")),
+  );
+  navLinks
+    ?.querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", () => setNav(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setNav(false);
+  });
+
+  // close the menu when the header grows past the collapse width
+  const header = document.querySelector("header");
+  if (header) {
+    new ResizeObserver(() => {
+      if (header.clientWidth > 768) setNav(false);
+    }).observe(header);
+  }
+
+  document.addEventListener("astro:before-swap", () => setNav(false));
+</script>

@@ -1,0 +1,42 @@
+---
+
+---
+
+<header>
+  <img
+    class="headerLogo logo-light"
+    src="public/images/logo.png"
+    alt="Bandflower Magazine"
+  />
+  <img
+    class="headerLogo logo-dark"
+    src="public/images/logo-darkmode.png"
+    alt="Bandflower Magazine"
+  />
+</header>
+
+<style>
+  .headerLogo {
+    width: clamp(25rem, 85%, 80rem);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 1.2em;
+  }
+
+  /* Default: light logo visible, dark hidden */
+  .logo-dark {
+    display: none;
+  }
+  .logo-light {
+    display: block;
+  }
+
+  /* When <html> has .dark, flip them */
+  html.dark .logo-light {
+    display: none;
+  }
+  html.dark .logo-dark {
+    display: block;
+  }
+</style>

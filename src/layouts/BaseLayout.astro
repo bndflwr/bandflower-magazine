@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import HeaderLogo from "../components/HeaderLogo.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://use.typekit.net/ksc8ilf.css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+
+    <Font cssVariable="--font-blackout-midnight" preload />
+    <Font cssVariable="--font-blackout-two-am" preload />
+    <Font cssVariable="--font-azeret-mono" preload />
+
+    <PagefindConfig />
+
+    <style>
+      .sectiontitle {
+        font-family: "Blackout Midnight";
+        font-size: 4rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <HeaderLogo />
+      <Navbar />
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <Footer />
+    </footer>
+  </body>
+</html>
