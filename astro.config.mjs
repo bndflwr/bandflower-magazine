@@ -2,14 +2,15 @@
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import pagefind from "astro-pagefind";
-
+import node from "@astrojs/node";
 import icon from "astro-icon";
-
-import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [pagefind(), icon(), react()],
+  adapter: node({
+    mode: "standalone",
+  }),
+  integrations: [pagefind(), icon()],
   vite: {
     plugins: [tailwindcss()],
   },

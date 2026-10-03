@@ -82,7 +82,7 @@ import { Icon } from "astro-icon/components";
     color: white;
     text-decoration: none;
     transition:
-      background 0.2s ease,
+      background 0.15s ease,
       transform 0.1s ease;
     display: inline-block;
     width: fit-content;
@@ -93,9 +93,7 @@ import { Icon } from "astro-icon/components";
     background: -webkit-linear-gradient(180deg, #9b2e75, #791d59);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition:
-      background 0.2s ease,
-      transform 0.1s ease;
+    transition: transform 0.1s ease;
     transform: translateX(4px);
   }
 
@@ -117,15 +115,12 @@ import { Icon } from "astro-icon/components";
     border-radius: 50%;
     text-decoration: none;
     font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    transition:
-      background 0.2s ease,
-      color 0.2s ease,
-      transform 0.15s ease;
+    transition: transform 0.15s ease;
     flex-shrink: 0;
   }
 
   .social-links a:hover {
-    background: #9b2e75;
+    background: linear-gradient(180deg, #9b2e75, #791d59);
     color: #fbc1e6;
     transform: scale(1.08);
   }
@@ -169,6 +164,7 @@ import { Icon } from "astro-icon/components";
           <a href="#" aria-label="Youtube"><Icon name="bi:youtube" /></a>
           <a href="#" aria-label="Twitter"><Icon name="bi:twitter" /></a>
           <a href="#" aria-label="Tiktok"><Icon name="bi:tiktok" /></a>
+          <a href="#" aria-label="Spotify"><Icon name="bi:spotify" /></a>
         </div>
       </div>
 
